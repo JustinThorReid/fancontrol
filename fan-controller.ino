@@ -21,10 +21,10 @@ void setup()
   mqtt = MQTTHelper::getInstance();
   mqtt->startConnection(WIFI_SSID, WIFI_PASS, MQTT_HOST, MQTT_USER, MQTT_PASS, MQTT_CLIENT);
 
-  mqtt->subscribe(BEDROOM_FAN, MQTTQOS::AT_MOST_ONCE);
-  mqtt->subscribe(BEDROOM_LIGHT, MQTTQOS::AT_MOST_ONCE);
-  mqtt->subscribe(OFFICE_FAN, MQTTQOS::AT_MOST_ONCE);
-  mqtt->subscribe(OFFICE_LIGHT, MQTTQOS::AT_MOST_ONCE);
+  mqtt->subscribe(BEDROOM_FAN, MQTTQOS::EXACTLY_ONCE);
+  mqtt->subscribe(BEDROOM_LIGHT, MQTTQOS::EXACTLY_ONCE);
+  mqtt->subscribe(OFFICE_FAN, MQTTQOS::EXACTLY_ONCE);
+  mqtt->subscribe(OFFICE_LIGHT, MQTTQOS::EXACTLY_ONCE);
 
   updater = Updater::getInstance();
 
