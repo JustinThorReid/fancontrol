@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "constants.c": "cpp",
+        "button.c": "cpp",
+        "light-sensor.c": "cpp"
+    }
+}
