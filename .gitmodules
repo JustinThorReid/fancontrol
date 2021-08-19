@@ -1,0 +1,6 @@
+[submodule "src/arduino-updater"]
+	path = src/arduino-updater
+	url = git@github.com:JustinThorReid/arduino-updater.git
+[submodule "src/arduino-mqtt-helper"]
+	path = src/arduino-mqtt-helper
+	url = git@github.com:JustinThorReid/arduino-mqtt-helper.git
