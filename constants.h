@@ -9,9 +9,9 @@
 #define FAN "fan"
 #define LIGHT "light"
 
-#define BEDROOM_FAN "thor/" + APP_NAME + "/" + ROOM_BED + "/" + FAN + "/enabled"
-#define BEDROOM_LIGHT "thor/" + APP_NAME + "/" + ROOM_BED + "/" + LIGHT + "/enabled"
-#define OFFICE_FAN "thor/" + APP_NAME + "/" + ROOM_OFFICE + "/" + FAN + "/enabled"
-#define OFFICE_LIGHT "thor/" + APP_NAME + "/" + ROOM_OFFICE + "/" + LIGHT + "/enabled"
+#define BEDROOM_FAN "thor/" APP_NAME "/" ROOM_BED "/" FAN "/enabled"
+#define BEDROOM_LIGHT "thor/" APP_NAME "/" ROOM_BED "/" LIGHT "/enabled"
+#define OFFICE_FAN "thor/" APP_NAME "/" ROOM_OFFICE "/" FAN "/enabled"
+#define OFFICE_LIGHT "thor/" APP_NAME "/" ROOM_OFFICE "/" LIGHT "/enabled"
 
 #endif

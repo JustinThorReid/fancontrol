@@ -14,10 +14,10 @@ const uint16_t PULSE_WIDTH = 400;
 void setup()
 {
   pinMode(TX_PIN, OUTPUT);
-//  transmit(DATA_PULSE_WIDTH, officeLight, sizeof(officeLight));
-//  Serial.begin(115200);
-//  Serial.println("Start");
-//
+  //  transmit(DATA_PULSE_WIDTH, officeLight, sizeof(officeLight));
+  //  Serial.begin(115200);
+  //  Serial.println("Start");
+  //
   mqtt = MQTTHelper::getInstance();
   mqtt->startConnection(WIFI_SSID, WIFI_PASS, MQTT_HOST, MQTT_USER, MQTT_PASS, MQTT_CLIENT);
 
@@ -33,42 +33,34 @@ void loop()
 {
   updater->loop();
 
-  MQTTNotification *notification = mqtt->loop();
+  const MQTTNotification *notification = mqtt->loop();
   if (notification != nullptr)
   {
-    boolean shouldEnable = strcmp(notification->payload, "true");
+    boolean shouldEnable = strcmp(notification->payload, "true") == 0;
 
-    switch (notification->payload)
+    if (strcmp(notification->payload, BEDROOM_FAN) == 0)
     {
       // Bedroom fan doesn't have a off command
-    case BEDROOM_FAN:
       transmit(DATA_PULSE_WIDTH, bedFan, sizeof(bedFan));
-      transmit(DATA_PULSE_WIDTH, bedFan, sizeof(bedFan));
-      break;
-    case BEDROOM_LIGHT:
+    }
+    else if (strcmp(notification->payload, BEDROOM_LIGHT) == 0)
+    {
       transmit(DATA_PULSE_WIDTH, bedLight, sizeof(bedLight));
-      transmit(DATA_PULSE_WIDTH, bedLight, sizeof(bedLight));
-      break;
-
-    case OFFICE_FAN:
+    }
+    else if (strcmp(notification->payload, OFFICE_FAN) == 0)
+    {
       if (shouldEnable)
       {
-        transmit(DATA_PULSE_WIDTH, officeLowSpeed, sizeof(officeLowSpeed));
         transmit(DATA_PULSE_WIDTH, officeLowSpeed, sizeof(officeLowSpeed));
       }
       else
       {
         transmit(DATA_PULSE_WIDTH, officeOffSpeed, sizeof(officeOffSpeed));
-        transmit(DATA_PULSE_WIDTH, officeOffSpeed, sizeof(officeOffSpeed));
       }
-      break;
-    case OFFICE_LIGHT:
+    }
+    else if (strcmp(notification->payload, OFFICE_LIGHT) == 0)
+    {
       transmit(DATA_PULSE_WIDTH, officeLight, sizeof(officeLight));
-      transmit(DATA_PULSE_WIDTH, officeLight, sizeof(officeLight));
-      break;
-
-    default:
-      break;
     }
   }
 }
