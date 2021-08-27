@@ -28,6 +28,25 @@ void transmit(uint16_t pulseWidth, uint8_t *data, uint8_t len)
             delayMicroseconds(delayNeeded);
         }
     }
+
+    // Repeat to make sure its heard
+    for (uint8_t i = 0; i < len; i++)
+    {
+        const uint8_t b = data[i];
+        for (uint8_t j = 8; j > 0; j--)
+        {
+            if (bitRead(b, j - 1) == 1)
+            {
+                digitalWrite(TX_PIN, HIGH);
+            }
+            else
+            {
+                digitalWrite(TX_PIN, LOW);
+            }
+
+            delayMicroseconds(delayNeeded);
+        }
+    }
 }
 
 void setOfficeLight(bool shouldBeOn)

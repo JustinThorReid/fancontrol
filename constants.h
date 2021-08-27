@@ -1,6 +1,8 @@
 #ifndef _constants
 #define _constants
 
+#include "secrets.h"
+
 #define TX_PIN 5
 #define DATA_PULSE_WIDTH 400
 

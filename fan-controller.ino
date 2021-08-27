@@ -11,6 +11,7 @@ Updater *updater;
 void setup()
 {
   pinMode(TX_PIN, OUTPUT);
+
   mqtt = MQTTHelper::getInstance();
   mqtt->startConnection(WIFI_SSID, WIFI_PASS, MQTT_HOST, MQTT_USER, MQTT_PASS, MQTT_CLIENT);
 
